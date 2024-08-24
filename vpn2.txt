@@ -1,0 +1,5 @@
+      <provider
+            android:name="subham.hook"
+            android:exported="false"
+            android:authorities="hook"
+            android:initOrder="19999999"/>
