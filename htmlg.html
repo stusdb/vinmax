@@ -14,13 +14,13 @@
             font-style: normal;
         }
         .dark-mode {
-            --primary-color: #34495E;
-            --secondary-color: #2C3E50;
-            --text-color: #ffffff;
-            --background-color: #e5e5e5;
-            --grid-item-bg: #ffffff;
-            --grid-item-text: #333333;
-        }
+    --primary-color: #3b6b8e;          /* لون أزرق أفتح قليلاً من اللون الأساسي */
+    --secondary-color: #2f4d65;        /* لون أزرق داكن للحفاظ على التباين */
+    --text-color: #ffffff;             /* لون النص الأبيض */
+    --background-color: #f0f4f8;       /* خلفية أكثر إشراقًا لتتباين مع الأزرق */
+    --grid-item-bg: #ffffff;           /* الحفاظ على الخلفية البيضاء للعناصر داخل الشبكة */
+    --grid-item-text: #2b2b2b;         /* لون النص أكثر دكانة قليلاً لضمان وضوح القراءة */
+} 
         :root {
             --primary-color: #1a2634;
             --secondary-color: #141c24;
@@ -191,6 +191,7 @@
             font-size: 16px;
             color: var(--grid-item-text);
             text-align: center;
+            font-weight: 100;
         }
         .app-name {
             font-size: 27px;
@@ -379,7 +380,7 @@
 
     <div class="sidenav" id="mySidenav">
         <div class="closebtn" onclick="closeNav()">إغلاق</div><br><br>
-        <div onclick="location.href=''"><i class="fas fa-home"></i> الصفحة الرئيسية</div>
+        <div onclick="location.href='go:home'"><i class="fas fa-home"></i> الصفحة الرئيسية</div>
         <div onclick="location.href='#'"><i class="fas fa-code"></i> محرر الاكواد</div>
         <div onclick="location.href='go:all'"><i class="fab fa-html5"></i> واجهات HTML</div>
         <div onclick="location.href='go:videop'"><i class="fas fa-video"></i> مشغلات فيديو</div>
