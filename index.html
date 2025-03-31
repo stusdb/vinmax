@@ -1,311 +1,802 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinmax</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>VINMAX - تحميل التطبيق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        @font-face {
-            font-family: 'jijo';
-            src: url('https://alfont.com/wp-content/fonts/naskh-arabic-fonts//alfont_com_AlFont_com_ArabicUITextLight.otf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        :root {
+            --primary-color: #333333;
+            --accent-color: #E60000;
+            --background: #121212;
+            --card-bg: #1E1E1E;
+            --text-primary: #F8F8F8;
+            --text-secondary: #AAAAAA;
+            --border-radius: 0.75rem;
+            --transition: all 0.3s ease;
+            --base-font-size: 16px;
+            --header-height: 3.75rem;
+        }
+
+        html {
+            font-size: 100%;
         }
 
         body {
-            font-family: 'jijo', sans-serif;
-            background-color: #101010;
-            color: #e0e0e0;
-            margin: 0;
-            padding: 0;
+            background-color: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
             direction: rtl;
-            text-align: right;
-            animation: fadeIn 1s ease-in-out;
-            user-select: none; /* منع النسخ */
-            overflow-x: hidden; /* لمنع تمرير الصفحة أفقياً */
+            font-size: var(--base-font-size);
         }
 
-        header {
-            background-color: #1b1b1b;
-            padding: 10px;
-            text-align: center;
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        h1 {
-            margin: 0;
-            font-size: 24px;
-            font-family: 'jijo', sans-serif;
-            font-weight: 100;
-            color: transparent;
-            background: linear-gradient(to right, red 0%, red 48%, white 50%, white 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        .info, .features-container {
-            background-color: #1f1f1f;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .info img.main-image {
+        /* Header/Status Bar */
+        .status-bar {
+            height: var(--header-height);
             width: 100%;
-            max-width: 600px;
-            border: 2px solid #000;
-            border-radius: 10px;
-            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 0 1rem;
+            box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--accent-color);
+            border-radius: 0.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(230, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(230, 0, 0, 0.6);
+        }
+
+        .logo-text {
+            font-family: "Cinzel Decorative", serif;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, #ff0000, #8b0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+        }
+
+        .status-actions {
+            display: flex;
+            gap: 0.9375rem;
+        }
+
+        .status-btn {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .status-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            padding: calc(var(--header-height) + 1rem) 1rem 2rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-width: 75rem;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(90deg, var(--accent-color), var(--text-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 400;
+            margin: 0.5rem 0 1.5rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+        }
+
+        .accent-text {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* App Mockup */
+        .app-mockup {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .mockup-device {
+            position: relative;
+            width: 280px;
+            height: 580px;
+            background-color: var(--card-bg);
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: var(--transition);
+        }
+
+        .mockup-device:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .mockup-screen {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background-color: var(--background);
+        }
+
+        .mockup-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mockup-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background-color: var(--card-bg);
+            border-radius: 0 0 1rem 1rem;
+            z-index: 10;
+        }
+
+        /* Download Section */
+        .download-section {
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .download-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .download-btn {
-            display: inline-block;
-            background-color: #ff0000;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 18px;
-            transition: background-color 0.3s;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             cursor: default;
         }
 
         .download-btn:hover {
-            background-color: #ff4569;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            background-color: var(--accent-color);
         }
 
-        .features {
+        .download-btn-icon {
+            font-size: 2rem;
+        }
+
+        .download-btn-text {
+            text-align: left;
+        }
+
+        .download-btn-small {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .download-btn-large {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 3rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(230, 0, 0, 0.1);
+            border-radius: 50%;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-            justify-content: center; /* لضبط الميزات في المركز */
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1.5rem;
+            color: var(--accent-color);
+            font-size: 2rem;
+            transition: var(--transition);
         }
 
-        .feature {
-            background-color: #2a2a2a;
-            padding: 20px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
+        .feature-card:hover .feature-icon {
+            background-color: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 0;
             text-align: center;
-            border: 1px solid #000;
+            background: linear-gradient(to bottom, var(--background), rgba(30, 30, 30, 0.95));
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
         }
 
-        .feature img {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border: 2px solid #000;
+        .cta-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
-        footer {
-            background-color: #1b1b1b;
+        .cta-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Tajawal', sans-serif;
+            padding: 1rem 2.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: default;
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 10px 20px rgba(230, 0, 0, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(230, 0, 0, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--card-bg);
+            padding: 2rem 1rem;
             text-align: center;
-            padding: 10px 0;
-            margin-top: 20px;
         }
 
-        .social-media a {
-            margin: 0 10px;
-            color: #e0e0e0;
-            text-decoration: none;
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.625rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-secondary);
+            transition: var(--transition);
             cursor: default;
         }
 
-        .social-media a:hover {
-            color: #f0f0f0;
+        .social-link:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-5px);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Slider */
-        .slider-container {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .slider {
+        .footer-links {
             display: flex;
-            overflow: hidden;
-            border-radius: 10px;
-            position: relative;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
         }
 
-        .slider img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 9 / 16;
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
         }
 
-        .slider button {
-            position: absolute;
-            bottom: 20px;
-            background-color: #000;
-            border: none;
-            color: #fff;
-            padding: 20px;
-            cursor: pointer;
-            border-radius: 50%;
-            z-index: 1; /* لضمان أن الأزرار تكون فوق الصور */
+        .footer-link:hover {
+            color: var(--accent-color);
         }
 
-        .slider button.prev {
-            left: 10px;
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 50%;
+            transform: translateX(50%);
+            background-color: rgba(18, 18, 18, 0.9);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 1.875rem;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            font-size: 0.875rem;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(50%) translateY(-0.625rem);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .app-mockup {
+                flex-direction: column;
+                align-items: center;
+            }
             
+            .mockup-device {
+                width: 240px;
+                height: 500px;
+            }
+            
+            .download-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .download-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
         }
 
-        .slider button.next {
-            right: 10px;
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .content {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+            
+            .mockup-device {
+                width: 260px;
+                height: 540px;
+            }
         }
 
-        .slider button i {
-            font-size: 34px;
-        }
-
-        .dots {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .dots span {
-            cursor: pointer;
-            height: 15px;
-            width: 15px;
-            margin: 0 2px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.6s ease;
-        }
-
-        .dots .active {
-            background-color: #717171;
-        }
-
-        /* Text above download button */
-        .info p.download-text {
-            margin-bottom: 20px;
-            font-size: 14px;
-            color: #fff;
+        @media (min-width: 1025px) {
+            .content {
+                padding-left: 3rem;
+                padding-right: 3rem;
+            }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>VINMAX</h1>
-    </header>
-    <div class="content">
-        <div class="info">
-            <img src="https://firebasestorage.googleapis.com/v0/b/html-genius.appspot.com/o/20230818_164603.jpg?alt=media&token=4ccd6750-24c8-4ed1-8599-198f32b594fd" alt="Main Image" class="main-image">
-            <p class="download-text">استمتع بمشاهدة الأفلام والمسلسلات في تطبيقنا</p>
-            <a href="https://www.mediafire.com/file/bsbch1pm7kwhw7f/vinmax.apk/file" class="download-btn">تحميل التطبيق</a>
-        </div>
-
-        <div class="features-container">
-            <div class="features">
-                <div class="feature">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/html-genius.appspot.com/o/Screenshot_2024-06-17_144536.jpg?alt=media&token=1714a8c0-3f46-414f-ae5e-198a5ebe2899" alt="Feature Image">
-                    <h2>مشغل داخلي</h2>
-                    <p>يحتوي على مشغل فيديوهات داخلي لن تحتاج لتثبيت أي تطبيقات أخرى.</p>
-                </div>
-                <div class="feature">
-                    <img src="https://www.raed.net/img?id=846855" alt="Feature Image">
-                    <h2>جودة عالية</h2>
-                    <p>يقدم الحلقات بجودة عالية وحجم صغير جداً.</p>
-                </div>
-                <div class="feature">
-                    <img src="https://www.raed.net/img?id=846856" alt="Feature Image">
-                    <h2>تصميم مريح</h2>
-                    <p>تم تصميم التطبيق بأحدث التقنيات ليلبي جميع متطلبات المستخدمين.</p>
-                </div>
-                <div class="feature">
-                    <img src="https://www.raed.net/img?id=846854" alt="Feature Image">
-                    <h2>تحديثات مستمرة</h2>
-                    <p>يتم تحديث التطبيق باستمرار لضمان أفضل تجربة مستخدم.</p>
-                </div>
-                <div class="feature">
-                    <img src="https://www.raed.net/img?id=846857" alt="Feature Image">
-                    <h2>واجهة مستخدم بسيطة</h2>
-                    <p>واجهة مستخدم سهلة الاستخدام ومناسبة لجميع الأعمار.</p>
-                </div>
+<div class="app-container">
+    <div class="status-bar">
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-film"></i>
             </div>
+            <div class="logo-text">VINMAX</div>
         </div>
-
-        <div class="features-container">
-            <div class="slider-container">
-                <div class="slider" id="slider">
-                    <img src="https://via.placeholder.com/720x1280" alt="Screenshot 1">
-                    <img src="https://via.placeholder.com/720x1280" alt="Screenshot 2">
-                    <img src="https://via.placeholder.com/720x1280" alt="Screenshot 3">
-                </div>
-              
-                <button class="next" onclick="prevSlide()"><i class="fas fa-chevron-right"></i></button>
-                <button class="prev" onclick="nextSlide()"><i class="fas fa-chevron-left"></i></button>
+        <div class="status-actions">
+            <div class="status-btn" onclick="window.location.href='#features'">
+                <i class="fa-solid fa-star"></i>
             </div>
-            <div class="dots">
-                <span class="dot" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
+            <div class="status-btn" onclick="window.location.href='#download'">
+                <i class="fa-solid fa-download"></i>
             </div>
         </div>
     </div>
-    <footer>
-        <div class="social-media">
-            <a href="https://www.facebook.com/jocker.jijo.1?mibextid=ZbWKwL">فيسبوك</a>
-            <a href="https://t.me/wri_xuu">تلجرام</a>
-            <a href="https://www.instagram.com/rewx_w?igsh=MWJranJ6NjluNHdrbQ==">انستغرام</a>
+
+    <div class="content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">VINMAX</h1>
+            <p class="hero-subtitle">تطبيق مشاهدة وتحميل <span class="accent-text">الأفلام العالمية</span> و <span class="accent-text">أفلام الأنمي</span> بجودة عالية وبدون إعلانات</p>
+            
+            <div class="app-mockup">
+                <div class="mockup-device">
+                    <div class="mockup-notch"></div>
+                    <div class="mockup-screen">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNzAwNzUzNjY4MV5BMl5BanBnXkFtZTgwMTQ5MzM0NjM@._V1_.jpg" alt="VINMAX App Screenshot" onerror="this.src='/placeholder.svg?height=580&width=280'">
+                    </div>
+                </div>
+                <div class="mockup-device">
+                    <div class="mockup-notch"></div>
+                    <div class="mockup-screen">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMzI0NmVkMjEtYmY4MS00ZDMxLTlkZmEtMzU4MDQxYTMzMjU2XkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_FMjpg_UX1000_.jpg" alt="VINMAX App Screenshot" onerror="this.src='/placeholder.svg?height=580&width=280'">
+                    </div>
+                </div>
+                <div class="mockup-device">
+                    <div class="mockup-notch"></div>
+                    <div class="mockup-screen">
+                        <img src="https://m.media-amazon.com/images/M/MV5BODRmZDVmNzUtZDA4ZC00NjhkLWI2M2UtN2M0ZDIzNDcxYThjL2ltYWdlXkEyXkFqcGdeQXVyNTk0MzMzODA@._V1_.jpg" alt="VINMAX App Screenshot" onerror="this.src='/placeholder.svg?height=580&width=280'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download-section" id="download">
+            <h2 class="section-title">حمل التطبيق الآن</h2>
+            <p>استمتع بمشاهدة أحدث الأفلام العالمية وأفلام الأنمي بجودة عالية</p>
+            
+            <div class="download-options">
+     
+                <div href="" class="download-btn" onclick="window.open('https://www.mediafire.com/file/5au5wca0pd78m22/vinmax.apk/file', '_blank'); showToast('جاري تحميل ملف APK...', 'fa-download')">
+                    <div class="download-btn-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="download-btn-text">
+                        <div class="download-btn-small">تحميل مباشر</div>
+                        <div class="download-btn-large">ملف APK</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section" id="features">
+            <h2 class="section-title">مميزات التطبيق</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="feature-title">أفلام عالمية</h3>
+                    <p class="feature-desc">مكتبة ضخمة من الأفلام العالمية بجودة عالية ومترجمة للعربية</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <h3 class="feature-title">أفلام أنمي</h3>
+                    <p class="feature-desc">مجموعة كبيرة من أفلام الأنمي الشهيرة والحصرية مترجمة للعربية</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 class="feature-title">تحميل الأفلام</h3>
+                    <p class="feature-desc">إمكانية تحميل الأفلام لمشاهدتها لاحقاً بدون إنترنت</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3 class="feature-title">بدون إعلانات</h3>
+                    <p class="feature-desc">استمتع بتجربة مشاهدة سلسة بدون إعلانات مزعجة</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">سرعة عالية</h3>
+                    <p class="feature-desc">سرعة تحميل عالية وتشغيل سلس للأفلام بدون تقطيع</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">تصميم عصري</h3>
+                    <p class="feature-desc">واجهة سهلة الاستخدام وتصميم عصري يناسب جميع الأجهزة</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2 class="cta-title">ماذا تنتظر؟</h2>
+            <p class="cta-subtitle">حمل تطبيق VINMAX الآن واستمتع بمشاهدة أحدث الأفلام العالمية وأفلام الأنمي بجودة عالية وبدون إعلانات</p>
+            <button class="cta-btn" onclick="window.location.href='#download'">
+                <i class="fas fa-download"></i>
+                تحميل التطبيق
+            </button>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-film"></i>
+            </div>
+            <div class="logo-text">VINMAX</div>
+        </div>
+        
+        <div class="social-links">
+            <div href="#" class="social-link" onclick="showToast('الانتقال إلى صفحة الفيسبوك', 'fa-facebook-f')">
+                <i class="fab fa-facebook-f"></i>
+            </div>
+            <div href="#" class="social-link" onclick="window.open('https://t.me/vinmax_01', '_blank'); showToast('الانتقال إلى حساب التلجرام', 'fa-telegram');">
+                <i class="fab fa-telegram"></i>
+            </div>
+            <div href="#" class="social-link" onclick="showToast('الانتقال إلى حساب الانستغرام', 'fa-instagram')">
+                <i class="fab fa-instagram"></i>
+            </div>
+            <div href="#" class="social-link" onclick="showToast('الانتقال إلى قناة اليوتيوب', 'fa-youtube')">
+                <i class="fab fa-youtube"></i>
+            </div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#" class="footer-link" onclick="showToast('الانتقال إلى صفحة من نحن', 'fa-info-circle')">من نحن</a>
+            <a href="#" class="footer-link" onclick="showToast('الانتقال إلى صفحة سياسة الخصوصية', 'fa-shield-alt')">سياسة الخصوصية</a>
+            <a href="#" class="footer-link" onclick="showToast('الانتقال إلى صفحة الشروط والأحكام', 'fa-file-contract')">الشروط والأحكام</a>
+            <a href="#" class="footer-link" onclick="showToast('الانتقال إلى صفحة اتصل بنا', 'fa-envelope')">اتصل بنا</a>
+        </div>
+        
+        <div class="copyright">
+            VINMAX © 2024 جميع الحقوق محفوظة
         </div>
     </footer>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+</div>
 
-    <script>
-        let currentSlideIndex = 0;
+<script>
+    // Show toast notification
+    function showToast(message, icon = 'fa-circle-info') {
+        const toastEl = document.getElementById('toast');
+        toastEl.innerHTML = `<i class="fa-solid ${icon}"></i> ${message}`;
+        toastEl.classList.add('show');
+        
+        setTimeout(() => {
+            toastEl.classList.remove('show');
+        }, 3000);
+    }
 
-        function showSlide(index) {
-            const slides = document.querySelectorAll('.slider img');
-            const dots = document.querySelectorAll('.dot');
-            if (index >= slides.length) currentSlideIndex = 0;
-            if (index < 0) currentSlideIndex = slides.length - 1;
-            slides.forEach((slide, i) => {
-                slide.style.display = i === currentSlideIndex ? 'block' : 'none';
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (!targetElement) return;
+            
+            window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: 'smooth'
             });
-            dots.forEach((dot, i) => {
-                dot.className = dot.className.replace(" active", "");
-                if (i === currentSlideIndex) {
-                    dot.className += " active";
+            
+            // Show toast for navigation
+            const pageName = targetId.replace('#', '');
+            let pageTitle = "الصفحة";
+            if (pageName === 'download') pageTitle = "تحميل التطبيق";
+            if (pageName === 'features') pageTitle = "مميزات التطبيق";
+            
+            showToast(`تم الانتقال إلى ${pageTitle}`, 'fa-arrow-down');
+        });
+    });
+    
+    // Add animation on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const featureCards = document.querySelectorAll('.feature-card');
+        const mockupDevices = document.querySelectorAll('.mockup-device');
+        
+        // Simple animation for feature cards when they come into view
+        function checkVisibility() {
+            featureCards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight - 100;
+                
+                if (isVisible) {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
                 }
             });
         }
-
-        function nextSlide() {
-            currentSlideIndex++;
-            showSlide(currentSlideIndex);
-        }
-
-        function prevSlide() {
-            currentSlideIndex--;
-            showSlide(currentSlideIndex);
-        }
-
-        function currentSlide(index) {
-            currentSlideIndex = index;
-            showSlide(currentSlideIndex);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            showSlide(currentSlideIndex);
+        
+        // Initialize styles
+        featureCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         });
-    </script>
+        
+        // Add slight rotation to mockup devices for 3D effect
+        mockupDevices.forEach((device, index) => {
+            const rotation = index === 0 ? -5 : index === 2 ? 5 : 0;
+            device.style.transform = `rotateY(${rotation}deg)`;
+        });
+        
+        // Check visibility on load and scroll
+        checkVisibility();
+        window.addEventListener('scroll', checkVisibility);
+    });
+</script>
 </body>
 </html>
